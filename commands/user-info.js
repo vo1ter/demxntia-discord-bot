@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require("discord.js")
 const moment = require('moment')
+const { defaultFooterText, defaultFooterIcon } = require('../config.json');
 moment.locale("ru")
 
 module.exports = {
@@ -16,13 +17,13 @@ module.exports = {
 
         const serverInfoEmbed = new MessageEmbed()
             .setColor(`#ff1414`)
-            .setTitle(`Інформація про користувача ${user.username}#${user.discriminator}`)
+            .setTitle(`Информация про пользователя ${user.username}#${user.discriminator}`)
             .setThumbnail(user.displayAvatarURL())
             .addFields(
                 { name: `Общая информация`, value: `Имя: ${user.username}\nДискриминатор: ${user.discriminator}\nПолный тэг: ${user.username}#${user.discriminator}\nID: ${user.id}\nДата регистрации: ${moment.utc(user.createdTimestamp).format("DD/MM/YYYY")}\nДата присоединения к серверу: ${moment.utc(joinedTimestamp).format("DD/MM/YYYY")}\n` },
             )
             .setTimestamp()
-            .setFooter({ text: "Designed and coded for DEMXNTIA", iconURL: "https://cdn.vo1ter.me/demxntia.png" });
+            .setFooter({ text: defaultFooterText, iconURL: defaultFooterIcon });
         await interaction.reply({ embeds: [serverInfoEmbed] });
 	},
 };

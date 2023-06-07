@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton, Permissions, StringSelectMenuBuilder, ActionRowBuilder, StringSelectMenuOptionBuilder } = require("discord.js")
 const moment = require('moment')
+const { defaultFooterText, defaultFooterIcon } = require('../config.json');
 const fs = require("fs");
 
 module.exports = {
@@ -28,7 +29,7 @@ module.exports = {
                 { name: `Исполнение действия`, value: `Действие с ${user.username}#${user.discriminator} выполнено успешно!` },
             )
             .setTimestamp()
-            .setFooter({ text: "Designed and coded for DEMXNTIA", iconURL: "https://cdn.vo1ter.me/demxntia.png" });
+            .setFooter({ text: defaultFooterText, iconURL: defaultFooterIcon });
 
         const tempmuteEmbed = new MessageEmbed()
             .setColor(`#32a832`)
@@ -38,7 +39,7 @@ module.exports = {
                 { name: `Временный мут`, value: `Выберите срок мута` },
             )
             .setTimestamp()
-            .setFooter({ text: "Designed and coded for DEMXNTIA", iconURL: "https://cdn.vo1ter.me/demxntia.png" });
+            .setFooter({ text: defaultFooterText, iconURL: defaultFooterIcon });
         
         if(interaction.member.id == user.id) {
             await interaction.reply({ content: "Вы не можете манипулировать с собой!", ephemeral: true})
@@ -60,10 +61,10 @@ module.exports = {
 					.setCustomId('mute')
 					.setLabel('Перма мут') //(с)перма
 					.setStyle('DANGER'),
-                new MessageButton()
-					.setCustomId('tempmute')
-					.setLabel('Временный мут')
-					.setStyle('DANGER'),
+                // new MessageButton()
+				// 	.setCustomId('tempmute')
+				// 	.setLabel('Временный мут')
+				// 	.setStyle('DANGER'),
                 new MessageButton()
 					.setCustomId('kick')
 					.setLabel('Кик')
@@ -126,6 +127,7 @@ module.exports = {
                         //     const tempmuteFilter = interaction => interaction.isButton = true
                         //     const tempmuteCollector = interaction.channel.createMessageComponentCollector({ filter, time: 60000 });
                         //     await tempmuteCollector.on('collect', async i => {
+                        //         console.log(i)
                         //         fs.writeFile("../tempMutes.json", JSON.stringify({ userId: user.userId, muteTime: toString(i.customId)}), (error) => {
                         //             if(error) {
                         //                 console.log(error)
@@ -165,7 +167,7 @@ module.exports = {
                 { name: `Информация про пользователя`, value: `Дата регистрации: ${moment.utc(user.createdTimestamp).format("DD/MM/YYYY")}\nДата присоединения к серверу: ${moment.utc(joinedTimestamp).format("DD/MM/YYYY")}\n` },
             )
             .setTimestamp()
-            .setFooter({ text: "Designed and coded for DEMXNTIA", iconURL: "https://cdn.vo1ter.me/demxntia.png" });
+            .setFooter({ text: defaultFooterText, iconURL: defaultFooterIcon });
         await interaction.reply({ embeds: [modEmbed], ephemeral: true, components: [buttonsRow] });
 	},
 };

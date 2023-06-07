@@ -1,5 +1,8 @@
 {
     "token": "MTEwNjQ5MTk0Mzc0NTIzNzEwMg.Gk2_EQ.yDG7PyH4e_aBa6aKnu3I6rOrgjhfokSEXEMQ7A",
-    "devGuildId": "1104010071756771408",
-    "clientId": "1106491943745237102"
+    "devGuildId": "437702323234537472",
+    "clientId": "1106491943745237102",
+    "startRoleId": "1114019659595915364",
+    "defaultFooterText": "Designed and coded for DEMXNTIA",
+    "defaultFooterIcon": "https://cdn.vo1ter.me/demxntia.png"
 }

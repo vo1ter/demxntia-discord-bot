@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require("discord.js")
 const moment = require('moment')
+const { defaultFooterText, defaultFooterIcon } = require('../config.json');
 moment.locale("ru")
 
 module.exports = {
@@ -34,7 +35,7 @@ module.exports = {
                 { name: "Канали", value: `\nКол-во каналов: ${channelsSum}\nAFK канал: ${afkChannel}\nКанал с правилами: ${rulesChannel}\nКанал с новостями: ${newsChannel}\nСистемный канал: ${systemChannel}` }
             )
             .setTimestamp()
-            .setFooter({ text: "Designed and coded for DEMXNTIA", iconURL: "https://cdn.vo1ter.me/demxntia.png" })
+            .setFooter({ text: defaultFooterText, iconURL: defaultFooterIcon })
         await interaction.reply({ embeds: [serverInfoEmbed] });
 	},
 };
