@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const Gamedig = require('gamedig');
 const moment = require('moment');
 const server = require('./server');
@@ -80,7 +80,7 @@ module.exports = {
 		var serverDetails = await pingServer(game, address.split(":"), [])
 		if(serverDetails = "Невозможно связаться с сервером.") return await interaction.reply({ content: 'Невозможно получить информацию о сервере! Скорее всего он либо оффлайн, либо бот не смог найти query порт.', ephemeral: true });
 		if(serverDetails.map == "" || serverDetails.map == undefined) serverDetails.map = "-"
-		const serverInfoEmbed = new MessageEmbed()
+		const serverInfoEmbed = new EmbedBuilder()
             .setColor(`#ff1414`)
             .setTitle(`Информация про ${serverDetails.name}`)
             // .setThumbnail() // картинки дефолт карт сюда плз :)

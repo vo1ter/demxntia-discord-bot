@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const moment = require('moment')
 const { defaultFooterText, defaultFooterIcon } = require('../config.json');
 moment.locale("ru")
@@ -15,7 +15,7 @@ module.exports = {
 
         await interaction.guild.members.fetch(user).then(user => joinedTimestamp = user.joinedTimestamp)
 
-        const serverInfoEmbed = new MessageEmbed()
+        const serverInfoEmbed = new EmbedBuilder()
             .setColor(`#ff1414`)
             .setTitle(`Информация про пользователя ${user.username}#${user.discriminator}`)
             .setThumbnail(user.displayAvatarURL())

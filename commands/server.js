@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const moment = require('moment')
 const { defaultFooterText, defaultFooterIcon } = require('../config.json');
 moment.locale("ru")
@@ -26,7 +26,7 @@ module.exports = {
 
         await server.channels.fetch().then(channels => channelsSum = channels.size);
 
-        const serverInfoEmbed = new MessageEmbed()
+        const serverInfoEmbed = new EmbedBuilder()
             .setColor(`#ff1414`)
             .setTitle(`Информация про сервер "${server.name}"`)
             .addFields(

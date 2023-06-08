@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, GatewayIntentBits, Collection, MessageEmbed, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Collection, EmbedBuilder, Partials } = require('discord.js');
 const { token, devGuildId, startRoleId, defaultFooterText, defaultFooterIcon } = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessageReactions], partials: [Partials.Message, Partials.Channel, Partials.Reaction] });
@@ -128,7 +128,7 @@ var i = 0;
 setInterval(function() {
 	switch(i) {
 		case 0:
-			client.user.setActivity(`v0.9.2`, { type: 0 });
+			client.user.setActivity(`v0.9.2.1`, { type: 0 });
 			i++;
 			break;
 		case 1:
@@ -142,13 +142,14 @@ setInterval(function() {
 }, 15000)
 
 client.on('guildMemberAdd', (member) => {
-	const welcomeEmbed = new MessageEmbed()
+	const welcomeEmbed = new EmbedBuilder()
 		.setColor(`#00c73c`)
 		.setTitle(`Новый пользователь`)
 		.setThumbnail(member.displayAvatarURL())
 		.addFields(
-			{ name: `Новый пользователь`, value: `Приветствуем ${member} на сервере!\nОзнакомьтесь с правилами: <#1113997896564621343>\nВыберите роли: <#1113997980412952716>\nИ если вы играете в CS, Valorant либо Apex Legends, то выберите свою роль: <#1113998312606019584>` },
+			{ name: `Новый пользователь`, value: `Приветствуем ${member} на сервере!\nОзнакомьтесь с правилами: <#1113997896564621343>\nДля выбора ролей, нажмите на кнопку "Каналы и роли" вверху списка каналов.` },
 		)
+		.setImage("https://cdn.vo1ter.me/msedge_iKH9n6Wb7a.png")
 		.setTimestamp()
 		.setFooter({ text: defaultFooterText, iconURL: defaultFooterIcon });
 	welcomeChannel.send({ embeds: [welcomeEmbed] })
@@ -156,7 +157,7 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.on('guildMemberRemove', (member) => {
-	const goodbyeEmbed = new MessageEmbed()
+	const goodbyeEmbed = new EmbedBuilder()
 		.setColor(`#ff483b`)
 		.setTitle(`Пользователь вышел`)
 		.setThumbnail(member.displayAvatarURL())
@@ -170,7 +171,7 @@ client.on('guildMemberRemove', (member) => {
 });
 
 client.on('guildUpdate', (oldServer, newServer) => {
-	const boostEmbed = new MessageEmbed()
+	const boostEmbed = new EmbedBuilder()
 		.setColor(`#f47fff`)
 		.setTitle(`Буст`)
 		.setThumbnail(member.displayAvatarURL())

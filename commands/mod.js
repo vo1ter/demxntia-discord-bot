@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton, Permissions, StringSelectMenuBuilder, ActionRowBuilder, StringSelectMenuOptionBuilder } = require("discord.js")
+const { EmbedBuilder, MessageActionRow, MessageButton, Permissions, StringSelectMenuBuilder, ActionRowBuilder, StringSelectMenuOptionBuilder } = require("discord.js")
 const moment = require('moment')
 const { defaultFooterText, defaultFooterIcon } = require('../config.json');
 const fs = require("fs");
@@ -21,7 +21,7 @@ module.exports = {
         
         await interaction.guild.members.fetch(interaction.options.getUser('name').id).then((user) => userKickPerm = user.permissions.has(Permissions.FLAGS.KICK_MEMBERS))
         
-        const successfullEmbed = new MessageEmbed()
+        const successfullEmbed = new EmbedBuilder()
             .setColor(`#32a832`)
             .setTitle(`Действия с ${user.username}#${user.discriminator}`)
             .setThumbnail(user.displayAvatarURL())
@@ -31,7 +31,7 @@ module.exports = {
             .setTimestamp()
             .setFooter({ text: defaultFooterText, iconURL: defaultFooterIcon });
 
-        const tempmuteEmbed = new MessageEmbed()
+        const tempmuteEmbed = new EmbedBuilder()
             .setColor(`#32a832`)
             .setTitle(`Действия с ${user.username}#${user.discriminator}`)
             .setThumbnail(user.displayAvatarURL())
@@ -159,7 +159,7 @@ module.exports = {
             return
         });
 
-        const modEmbed = new MessageEmbed()
+        const modEmbed = new EmbedBuilder()
             .setColor(`#ff1414`)
             .setTitle(`Манипулирование с ${user.username}#${user.discriminator}`)
             .setThumbnail(user.displayAvatarURL())
